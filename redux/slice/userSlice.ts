@@ -1,44 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { v4 as uuidv4 } from "uuid"
+import { address,userShortData, userInitialState,User } from "@/constants/Interfaces"
 
-interface address {
-  street: string
-  suite: string
-  city: string
-  zipcode: string
-  geo: {
-    lat: string
-    lng: string
-  }
-}
-export interface User {
-  id: number
-  name: string
-  email: string
-  address: address
-  phone: string
-  website: string
-  company: {
-    name: string
-    catchPhrase: string
-    bs: string
-  }
-}
 
-interface userShortData {
-    id: number,
-    name: string,
-    email : string,
-}
-
-interface userState {
-  users: User[],
-  usersShortInfo: userShortData[],
-  loader: boolean,
-}
-
-const initialState: userState = {
+const initialState: userInitialState = {
   users: [],
-  usersShortInfo : [],
+  usersShortInfo: [],
   loader: false,
 }
 const userSlice = createSlice({
@@ -46,13 +13,30 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<User[]>) => {
-      state.users = [...state.users, ...action.payload]
-      const shortInfo = state.users.map(({id, email, name}) => ({id, email, name}));
-      state.usersShortInfo = [...state.usersShortInfo, ...shortInfo];
+      const existingUserIds = new Set(state.users.map((user) => user.id))
+
+      const usersWithUniqueIds = action.payload.map((user) => {
+        if (existingUserIds.has(user.id)) {
+          return  { ...user, id: `${user.id}-${Date.now()}` }; // Assign a unique ID if the ID already exists
+        }
+        return user
+      })
+
+      state.users = [...state.users, ...usersWithUniqueIds]
+
+      //set the short info
+      const newShortInfo = usersWithUniqueIds.map(({ name, email, id }) => ({
+        name,
+        email,
+        id,
+      }))
+      state.usersShortInfo = [...state.usersShortInfo, ...newShortInfo]
     },
+
     setLoader: (state, action: PayloadAction<boolean>) => {
-      state.loader = action.payload;
+      state.loader = action.payload
     },
+
     getUser: (state, action: PayloadAction<string>) => {
       return state.users.find((user) => user.name === action.payload) || null
     },
