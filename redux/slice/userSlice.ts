@@ -32,12 +32,14 @@ interface userShortData {
 
 interface userState {
   users: User[],
-  usersShortInfo: userShortData[]
+  usersShortInfo: userShortData[],
+  loader: boolean,
 }
 
 const initialState: userState = {
   users: [],
   usersShortInfo : [],
+  loader: false,
 }
 const userSlice = createSlice({
   name: "users",
@@ -48,11 +50,14 @@ const userSlice = createSlice({
       const shortInfo = state.users.map(({id, email, name}) => ({id, email, name}));
       state.usersShortInfo = [...state.usersShortInfo, ...shortInfo];
     },
+    setLoader: (state, action: PayloadAction<boolean>) => {
+      state.loader = action.payload;
+    },
     getUser: (state, action: PayloadAction<string>) => {
       return state.users.find((user) => user.name === action.payload) || null
     },
   },
 })
 
-export const { addUser, getUser, getShortInfo } = userSlice.actions
+export const { addUser, getUser, getShortInfo, setLoader } = userSlice.actions
 export default userSlice.reducer
