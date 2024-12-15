@@ -4,11 +4,11 @@ import { userInitials } from '@/utils/Interfaces/UserProfileIcon'
 import { Colors } from '@/constants/Colors'
 import { ThemedText } from '@/components/ThemedText'
 
-const UserProfileIcon = () => {
+const UserProfileIcon = ({firstLetter, secondLetter}: {firstLetter: string, secondLetter: string}) => {
     const theme = useColorScheme() || 'light';
   return (
     <View style={[styles.container, {borderColor: Colors[theme].text}]}>
-      <ThemedText>AK</ThemedText>
+      <ThemedText>{firstLetter+secondLetter}</ThemedText>
     </View>
   )
 }

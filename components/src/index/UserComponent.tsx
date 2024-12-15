@@ -24,7 +24,7 @@ const UserComponent = ({name, email}: {name: string, email: string}) => {
 
       {/* right section  */}
       <ThemedView> 
-        <UserProfileIcon />
+        <UserProfileIcon firstLetter={name.charAt(0)} secondLetter={name.split(" ")[1].charAt(0)}/>
       </ThemedView>
     </ThemedView>
   )
@@ -43,6 +43,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    marginVertical: 5,
   },
 })
