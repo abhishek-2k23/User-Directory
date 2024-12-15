@@ -3,18 +3,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import UserComponent from './UserComponent';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Link } from 'expo-router';
 const UsersComponentList = () => {
     const usersShortInfo = useSelector((store:any) => store.users.usersShortInfo);
   return (
-    <SafeAreaView>
-        <ScrollView>
       <FlatList
         data={usersShortInfo}
-        renderItem={({item}) => <UserComponent name={item.name} email={item.email} />}
+        renderItem={({item}) => <Link href={"/UserDetails"} ><UserComponent name={item.name} email={item.email} /></Link>}
         keyExtractor={item => item.id}
+        contentContainerStyle={{gap: 10,}}
       />
-    </ScrollView>
-    </SafeAreaView>
   )
 }
 
