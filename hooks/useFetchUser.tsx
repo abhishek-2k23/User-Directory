@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "@/api/fetchUser";
-import { addUser } from "@/redux/slice/userSlice";
+import { addUser, setLoader } from "@/redux/slice/userSlice";
 
 const useFetchUser = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchAndStoreUsers = async () => {
+      dispatch(setLoader(true));
       try {
         const users = await fetchUser(); // Await the promise to get actual data
         if (users) {
@@ -15,6 +16,9 @@ const useFetchUser = () => {
         }
       } catch (error) {
         console.error("Error fetching users:", error);
+      }
+      finally{
+        dispatch(setLoader(false));
       }
     };
 
