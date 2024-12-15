@@ -10,11 +10,15 @@ import UserComponent from "@/components/src/index/UserComponent"
 import { fetchUser } from "@/api/fetchUser"
 import useFetchUser from "@/hooks/useFetchUser"
 import UsersComponentList from "@/components/src/index/UsersComponentList"
+import { useSelector } from "react-redux"
+import Loader from "@/components/src/Loader"
 
 const Home = () => {
   const theme = useColorScheme() || "light";
   const [call, setCall] = useState(true);
+  const loader = useSelector((store: any) => store.users.loader);
   useFetchUser();
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: Colors[theme].background }]}
@@ -44,12 +48,17 @@ const Home = () => {
             </ThemedView>
           </TouchableOpacity>
         </ThemedView>
+
+
         {/* user components  */}
-        <ThemedView>
-          <Link href={"/UserDetails"}>
+        {
+          loader ? <Loader /> : <ThemedView>
             <UsersComponentList />
-          </Link>
         </ThemedView>
+        }
+        
+
+
       </ThemedView>
     </SafeAreaView>
   )
