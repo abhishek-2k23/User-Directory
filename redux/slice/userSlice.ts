@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { v4 as uuidv4 } from "uuid"
 import { address,userShortData, userInitialState,User } from "@/constants/Interfaces"
 
 
@@ -7,41 +6,54 @@ const initialState: userInitialState = {
   users: [],
   usersShortInfo: [],
   loader: false,
+  userDetailsScreenData: null,
+  searchedUserData: null,
 }
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<User[]>) => {
-      const existingUserIds = new Set(state.users.map((user) => user.id))
-
-      const usersWithUniqueIds = action.payload.map((user) => {
-        if (existingUserIds.has(user.id)) {
-          return  { ...user, id: `${user.id}-${Date.now()}` }; // Assign a unique ID if the ID already exists
-        }
-        return user
-      })
-
-      state.users = [...state.users, ...usersWithUniqueIds]
-
-      //set the short info
+      const existingUserIds = new Set(state.users.map((user) => `${user.id}`));
+    
+      const usersWithUniqueIds = action.payload.map((user) => ({
+        ...user,
+        id: existingUserIds.has(`${user.id}`) ? `${user.id}-${Date.now()}` : `${user.id}`,
+      }));
+    
+      // Append new users without resetting state
+      state.users = [...state.users, ...usersWithUniqueIds];
+    
+      // Update the short info list
       const newShortInfo = usersWithUniqueIds.map(({ name, email, id }) => ({
         name,
         email,
         id,
-      }))
-      state.usersShortInfo = [...state.usersShortInfo, ...newShortInfo]
+      }));
+      state.usersShortInfo = [...state.usersShortInfo, ...newShortInfo];
     },
+    
 
     setLoader: (state, action: PayloadAction<boolean>) => {
       state.loader = action.payload
     },
 
-    getUser: (state, action: PayloadAction<string>) => {
-      return state.users.find((user) => user.name === action.payload) || null
+    setSearchedUserData: (state, action: PayloadAction<string>) => {
+      state.searchedUserData =  state.users.find((user) => user.name === action.payload) || null
+    },
+    
+    setUserDetailsScreenData: (state, action: PayloadAction<string | number>) => {
+      const id = action.payload.toString(); // Ensure consistent type
+      const foundUser = state.users.find((user) => user.id === id);
+      if (foundUser) {
+        state.userDetailsScreenData = foundUser; // Store the matched user in Redux state
+      } else {
+        console.error(`No user found with ID: ${id}`);
+        state.userDetailsScreenData = null; // Reset to null if no user is found
+      }
     },
   },
 })
 
-export const { addUser, getUser, getShortInfo, setLoader } = userSlice.actions
+export const { addUser, setLoader, setUserDetailsScreenData, setSearchedUserData } = userSlice.actions
 export default userSlice.reducer
