@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, useColorScheme, TouchableOpacity } from "react-native"
+import {StyleSheet, TextInput, useColorScheme, TouchableOpacity } from "react-native"
 import React, { useEffect, useState } from "react"
 import { ThemedView } from "@/components/ThemedView"
 import { ThemedText } from "@/components/ThemedText"
@@ -15,11 +15,14 @@ import Loader from "@/components/src/Loader"
 
 const Home = () => {
   const theme = useColorScheme() || "light";
-  const [call, setCall] = useState(true);
   const loader = useSelector((store: any) => store.users.loader);
-  useFetchUser();
+  const fetchAndStoreUsers = useFetchUser();
 
-  return (
+  useEffect(() => {
+    fetchAndStoreUsers();
+  }, []);
+  
+    return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: Colors[theme].background }]}
     >
@@ -48,7 +51,6 @@ const Home = () => {
             </ThemedView>
           </TouchableOpacity>
         </ThemedView>
-
 
         {/* user components  */}
         {
