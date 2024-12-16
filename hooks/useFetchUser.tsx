@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "@/api/fetchUser";
 import { addUser, setLoader } from "@/redux/slice/userSlice";
@@ -6,24 +5,24 @@ import { addUser, setLoader } from "@/redux/slice/userSlice";
 const useFetchUser = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchAndStoreUsers = async () => {
-      dispatch(setLoader(true));
-      try {
-        const users = await fetchUser(); // Await the promise to get actual data
-        if (users) {
-           dispatch(addUser(users)); // Dispatch each user to Redux store
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-      finally{
-        dispatch(setLoader(false));
-      }
-    };
+  const fetchAndStoreUsers = async () => {
+    dispatch(setLoader(true)); // Set loading state to true
 
-    fetchAndStoreUsers(); // Call the async function
-  }, [dispatch]);
+    try {
+      const users = await fetchUser(); // Fetch user data
+      if (Array.isArray(users)) {
+        dispatch(addUser(users)); // Add users to the store
+      } else {
+        console.error("Invalid data format received from fetchUser:", users);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      dispatch(setLoader(false)); // Stop loading state
+    }
+  };
+
+  return fetchAndStoreUsers; // Return the fetch function for invocation
 };
 
 export default useFetchUser;
