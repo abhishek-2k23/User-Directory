@@ -32,4 +32,6 @@ export interface userInitialState {
   users: User[]
   usersShortInfo: userShortData[]
   loader: boolean
+  userDetailsScreenData: User | null
+  searchedUserData : User | string | null
 }
