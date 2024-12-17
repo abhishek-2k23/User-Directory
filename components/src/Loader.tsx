@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, View, StyleSheet, useColorScheme } from 'react-native';
 import { Colors } from '@/constants/Colors';
+import { ThemedView } from '../ThemedView';
 
 const Loader = () => {
     const theme = useColorScheme() || "light";
@@ -43,7 +44,7 @@ const Loader = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ThemedView>
       <Animated.View
         style={[
           styles.circle,
@@ -71,17 +72,17 @@ const Loader = () => {
           },
         ]}
       />
-    </View>
+    </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '95%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  // container: {
+  //   width: '100%',
+  //   height: '95%',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   circle: {
     position: 'absolute',
     width: 20,
