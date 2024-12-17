@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { FlatList } from "react-native";
 import { shallowEqual, useSelector } from "react-redux";
 import UserComponent from "./UserComponent";

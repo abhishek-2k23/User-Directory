@@ -1,17 +1,14 @@
 import {
-  View,
-  Text,
   StyleSheet,
   useColorScheme,
   TouchableOpacity,
+  View,
 } from "react-native"
 import React, { useEffect } from "react"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import { Colors } from "@/constants/Colors"
 import UserProfileIcon from "../UserDetails/UserProfileIcon"
-import { useDispatch, useSelector } from "react-redux"
-import store from "@/redux/store"
 
 const UserComponent = ({
   name,
@@ -31,20 +28,20 @@ const UserComponent = ({
   return (
     <TouchableOpacity onPress={onPress}>
       <ThemedView
-        style={[styles.container, { borderColor: Colors[theme].text }]}
+        style={[styles.container, { borderColor: Colors[theme].text, borderStartWidth: 2,  borderBottomWidth: 3, borderBottomColor: "rgba(52, 50, 50, 0.96)" }]}
       >
         {/* left section  */}
-        <ThemedView>
+        <View>
           {/* name */}
           <ThemedText> {itemNo+". "+name}</ThemedText>
           {/* email  */}
           <ThemedText style={{ paddingLeft: 15 }}> {email}</ThemedText>
-        </ThemedView>
+        </View>
 
         {/* right section  */}
-        <ThemedView>
+        <View>
           <UserProfileIcon />
-        </ThemedView>
+        </View>
       </ThemedView>
     </TouchableOpacity>
   )
