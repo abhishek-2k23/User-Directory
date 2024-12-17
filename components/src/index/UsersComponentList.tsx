@@ -40,7 +40,7 @@ const UsersComponentList = () => {
         <UserComponent
           name={item?.name}
           email={item?.email}
-          no = {index+1}
+          itemNo = {index+1}
           onPress={() => handleUserPress(item?.id)} // Navigate on user press
         />
       )}

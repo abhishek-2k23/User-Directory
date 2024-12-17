@@ -16,10 +16,13 @@ import store from "@/redux/store"
 const UserComponent = ({
   name,
   email,
+  itemNo,
   onPress,
+  
 }: {
   name: string
   email: string
+  itemNo: number
   onPress: () => void
 }) => {
   const theme = useColorScheme() || "light"
@@ -33,9 +36,9 @@ const UserComponent = ({
         {/* left section  */}
         <ThemedView>
           {/* name */}
-          <ThemedText> {name}</ThemedText>
+          <ThemedText> {itemNo+". "+name}</ThemedText>
           {/* email  */}
-          <ThemedText style={{ paddingLeft: 10 }}> {email}</ThemedText>
+          <ThemedText style={{ paddingLeft: 15 }}> {email}</ThemedText>
         </ThemedView>
 
         {/* right section  */}
