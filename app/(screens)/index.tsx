@@ -17,6 +17,7 @@ import useFetchUser from "@/hooks/useFetchUser"
 import UsersComponentList from "@/components/src/index/UsersComponentList"
 import { useSelector } from "react-redux"
 import Loader from "@/components/src/Loader"
+import Search from "@/components/src/index/Search"
 
 const Home = () => {
   const theme = useColorScheme() || "light"
@@ -34,33 +35,10 @@ const Home = () => {
       <ThemedView>
         {/* app name  */}
         <ThemedText style={styles.appTitle}> User Directory</ThemedText>
+        
         {/* search box  & filter option icon */}
-        <ThemedView
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 10,
-          }}
-        >
-          <TextInput
-            style={[
-              styles.textInput,
-              { borderColor: Colors[theme].text, color: Colors[theme].text },
-            ]}
-          ></TextInput>
-          <TouchableOpacity>
-            <ThemedView
-              style={[
-                styles.searchIconBox,
-                { borderColor: Colors[theme].text },
-              ]}
-            >
-              <Ionicons name="search" size={20} color={Colors[theme].text} />
-            </ThemedView>
-          </TouchableOpacity>
-        </ThemedView>
-
+        <Search />
+        
         {/* user components  */}
         {loader ? (
           <ThemedView style={styles.loaderContainer}>
