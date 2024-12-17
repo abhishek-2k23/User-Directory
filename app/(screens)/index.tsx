@@ -1,4 +1,9 @@
-import {StyleSheet, TextInput, useColorScheme, TouchableOpacity } from "react-native"
+import {
+  StyleSheet,
+  TextInput,
+  useColorScheme,
+  TouchableOpacity,
+} from "react-native"
 import React, { useEffect, useState } from "react"
 import { ThemedView } from "@/components/ThemedView"
 import { ThemedText } from "@/components/ThemedText"
@@ -14,15 +19,15 @@ import { useSelector } from "react-redux"
 import Loader from "@/components/src/Loader"
 
 const Home = () => {
-  const theme = useColorScheme() || "light";
-  const loader = useSelector((store: any) => store.users.loader);
-  const fetchAndStoreUsers = useFetchUser();
+  const theme = useColorScheme() || "light"
+  const loader = useSelector((store: any) => store.users.loader)
+  const fetchAndStoreUsers = useFetchUser()
 
   useEffect(() => {
-    fetchAndStoreUsers();
-  }, []);
-  
-    return (
+    fetchAndStoreUsers(true)
+  }, [])
+
+  return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: Colors[theme].background }]}
     >
@@ -45,22 +50,25 @@ const Home = () => {
             ]}
           ></TextInput>
           <TouchableOpacity>
-            <ThemedView style={[styles.searchIconBox, {borderColor: Colors[theme].text, }]}>
-              
+            <ThemedView
+              style={[
+                styles.searchIconBox,
+                { borderColor: Colors[theme].text },
+              ]}
+            >
               <Ionicons name="search" size={20} color={Colors[theme].text} />
             </ThemedView>
           </TouchableOpacity>
         </ThemedView>
 
         {/* user components  */}
-        {
-          loader ? <Loader /> : <ThemedView>
+        {loader ? (
+          <ThemedView style={styles.loaderContainer}>
+            <Loader />
+          </ThemedView>
+        ) : (
             <UsersComponentList />
-        </ThemedView>
-        }
-        
-
-
+        )}
       </ThemedView>
     </SafeAreaView>
   )
@@ -86,7 +94,14 @@ const styles = StyleSheet.create({
   searchBox: {},
   searchIconBox: {
     borderWidth: 1,
-    borderRadius:5,
+    borderRadius: 5,
     padding: 5,
-  }
+  },
+  loaderContainer: {
+    width: "100%",
+    height: "90%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 })
