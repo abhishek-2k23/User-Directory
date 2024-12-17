@@ -34,4 +34,5 @@ export interface userInitialState {
   loader: boolean
   userDetailsScreenData: User | null
   searchedUserData : User | string | null
+  infiniteLoader: boolean
 }

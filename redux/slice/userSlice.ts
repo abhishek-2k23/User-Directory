@@ -8,6 +8,7 @@ const initialState: userInitialState = {
   loader: false,
   userDetailsScreenData: null,
   searchedUserData: null,
+  infiniteLoader: false,
 }
 const userSlice = createSlice({
   name: "users",
@@ -52,8 +53,12 @@ const userSlice = createSlice({
         state.userDetailsScreenData = null; // Reset to null if no user is found
       }
     },
+
+    setInfiniteLoader: (state, action: PayloadAction<boolean>) => {
+      state.infiniteLoader = action.payload
+    },
   },
 })
 
-export const { addUser, setLoader, setUserDetailsScreenData, setSearchedUserData } = userSlice.actions
+export const { addUser, setLoader,setInfiniteLoader, setUserDetailsScreenData, setSearchedUserData } = userSlice.actions
 export default userSlice.reducer

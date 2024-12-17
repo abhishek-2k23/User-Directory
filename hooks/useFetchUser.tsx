@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { fetchUser } from "@/api/fetchUser";
-import { addUser, setLoader } from "@/redux/slice/userSlice";
+import { addUser, setInfiniteLoader, setLoader } from "@/redux/slice/userSlice";
 
 const useFetchUser = () => {
   const dispatch = useDispatch();
 
-  const fetchAndStoreUsers = async () => {
-    dispatch(setLoader(true)); // Set loading state to true
+  const fetchAndStoreUsers = async (firstCall: boolean) => {
+    firstCall ? dispatch(setLoader(true)) : dispatch(setInfiniteLoader(true)) // Set loading state to true
 
     try {
       const users = await fetchUser(); // Fetch user data
@@ -18,7 +18,7 @@ const useFetchUser = () => {
     } catch (error) {
       console.error("Error fetching users:", error);
     } finally {
-      dispatch(setLoader(false)); // Stop loading state
+      firstCall ? dispatch(setLoader(false)) : dispatch(setInfiniteLoader(false)) // Stop loading state
     }
   };
 
