@@ -64,11 +64,11 @@ The app is optimized for all screen sizes and includes a modern glassmorphic des
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/user-directory.git
+   git clone https://github.com/abhishek-2k23/User-Directory
    ```
 2. **Navigate to the project directory**:
    ```bash
-   cd user-directory
+   cd User-Directory
    ```
 3. **Install dependencies**:
    ```bash
@@ -93,7 +93,7 @@ An APK file is provided for easy installation on Android devices. Download the A
 
 | User List | User Details | Theme Support |
 |-----------|--------------|---------------|
-| ![User List Screenshot](#) | ![User Details Screenshot](#) | ![Theme Support Screenshot](#) |
+| ![User List Screenshot](/assets/images/user_list_dark.jpg) | ![User Details Screenshot](/assets/images/user_details.jpg) | ![Theme Support Screenshot](/assets/images/theme.jpg) |
 
 Add your screenshots here by replacing the `#` with the actual image URLs or paths.
 
