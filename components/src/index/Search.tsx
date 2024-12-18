@@ -4,23 +4,44 @@ import {
   useColorScheme,
   StyleSheet,
 } from "react-native"
-import React from "react"
+import React, { useState } from "react"
 import { ThemedView } from "@/components/ThemedView"
 import { Ionicons } from "@expo/vector-icons"
 import { Colors } from "@/constants/Colors"
 import { ThemedText } from "@/components/ThemedText"
+import { useDispatch, useSelector } from "react-redux"
+import { setSearchScreen, setSearchText } from "../../../redux/slice/searchSlice"
+import { setSearchResult } from "@/redux/slice/userSlice"
 
 const Search = () => {
+  const [text, setText] = useState<string>('');
   const theme = useColorScheme() || "light"
+  const dispatch = useDispatch();
+  const searchText = useSelector((store:any) => store.search.searchText);
+
+  const onSubmit = () => {
+    if(text === ''){
+      return;
+    }
+    dispatch(setSearchText(text))
+    dispatch(setSearchResult(text))
+    dispatch(setSearchScreen(true))
+  }
+
+  const onChange = (text: string) => {
+    setText(text);
+  }
+
   return (
     <ThemedView style={styles.container}>
           <TextInput
             style={[
               styles.textInput,
-              { borderColor: Colors[theme].text, color: Colors[theme].text },
+              { borderColor: Colors[theme].text,backgroundColor: Colors[theme].cardBackground, color: Colors[theme].text },
             ]}
+            onChangeText={(text) => onChange(text)}
           ></TextInput>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onSubmit}>
             <ThemedView
               style={[
                 styles.searchIconBox,
