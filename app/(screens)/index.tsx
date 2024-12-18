@@ -14,6 +14,7 @@ import { setSearchScreen } from "@/redux/slice/searchSlice"
 import UserComponent from "@/components/src/index/UserComponent"
 import { router } from "expo-router"
 import { clearSearchResult } from "@/redux/slice/userSlice"
+import ThemeToggleButton from "@/components/ThemeToggle"
 
 const Home = () => {
 
@@ -45,7 +46,12 @@ const Home = () => {
     >
       <ThemedView>
         {/* app name  */}
-        <ThemedText style={styles.appTitle}> User Directory</ThemedText>
+
+        <ThemedView style={{flexDirection: 'row', justifyContent: 'space-between', paddingRight: 5, }}>
+
+          <ThemedText style={styles.appTitle}> User Directory</ThemedText>
+          <ThemeToggleButton />
+        </ThemedView>
 
         {/* search box  & filter option icon */}
         <Search />
