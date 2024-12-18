@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { FlatList, Pressable, StyleSheet, View } from "react-native"
 import { ThemedText } from "@/components/ThemedText"
 import UserComponent from "@/components/src/index/UserComponent"
@@ -18,6 +18,21 @@ const SearchedUserDetails = ({
 }) => {
   console.log(searchText, searchResult)
   const dispatch = useDispatch()
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+
+  const handleSortToggle = () => {
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+
+  const sortedResults =
+    searchResult?.slice().sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.name.localeCompare(b.name); // Ascending order
+      }
+      return b.name.localeCompare(a.name); // Descending order
+    }) || [];
+
 
   const handleClose = () => {
     dispatch(setSearchScreen(false)) // Close the search screen
@@ -55,6 +70,8 @@ const SearchedUserDetails = ({
           <ThemedText>X</ThemedText>
         </Pressable>
       </ThemedView>
+
+
       <FlatList
         data={searchResult}
         renderItem={({ item, index }) => (

@@ -8,10 +8,11 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 
 const UsersComponentList = () => {
-  const { usersShortInfo, infiniteLoader } = useSelector(
+  const { usersShortInfo, infiniteLoader, sortedResult} = useSelector(
     (state: any) => ({
       usersShortInfo: state.users.usersShortInfo,
       infiniteLoader: state.users.infiniteLoader,
+      sortedResult: state.users.sortedResult,
     }),
     shallowEqual
   );
@@ -35,7 +36,7 @@ const UsersComponentList = () => {
 
   return (
     <FlatList 
-      data={usersShortInfo}
+      data={sortedResult.length > 0 ? sortedResult : usersShortInfo}
       renderItem={({ item,index }) => (
         <UserComponent
           name={item?.name}
