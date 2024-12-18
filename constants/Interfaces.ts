@@ -36,5 +36,4 @@ export interface userInitialState {
   infiniteLoader: boolean
   searchResult: userShortData[] | null
   sortedResult: userShortData[]
-  theme: string
 }
