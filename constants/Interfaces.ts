@@ -35,4 +35,5 @@ export interface userInitialState {
   userDetailsScreenData: User | null
   infiniteLoader: boolean
   searchResult: userShortData[] | null
+  sortedResult: userShortData[]
 }
