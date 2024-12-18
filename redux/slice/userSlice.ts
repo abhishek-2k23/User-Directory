@@ -12,6 +12,7 @@ const initialState: userInitialState = {
   infiniteLoader: false,
   searchResult: null,
   sortedResult : [],
+  theme: '',
 }
 const userSlice = createSlice({
   name: "users",
@@ -80,7 +81,10 @@ const userSlice = createSlice({
         return b.name.localeCompare(a.name) // Descending order
       }) || []
     },
-       
+          
+    setTheme: (state, action: PayloadAction<string>) => {
+      state.theme = action.payload;
+    }
   },
 })
 
