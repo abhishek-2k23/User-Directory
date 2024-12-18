@@ -1,8 +1,8 @@
 # User Directory 📂
 
-User Directory is a **React Native** project built using **Expo**.
-It fetches data from a placeholder API and enhances it with functionalities like unique ID generation, infinite scrolling, and theme switching. 
-The app is optimized for all screen sizes and includes a modern glassmorphic design for user details.
+- User Directory is a **React Native** project built using **Expo**.
+- It fetches data from a placeholder API and enhances it with functionalities like unique ID generation, infinite scrolling, and theme switching. 
+- The app is optimized for all screen sizes and includes a modern glassmorphic design for user details.
 
 ---
 
@@ -95,7 +95,6 @@ An APK file is provided for easy installation on Android devices. Download the A
 |-----------|--------------|---------------|
 | ![User List Screenshot](/assets/images/user_list_dark.jpg) | ![User Details Screenshot](/assets/images/user_details.jpg) | ![Theme Support Screenshot](/assets/images/theme.jpg) |
 
-Add your screenshots here by replacing the `#` with the actual image URLs or paths.
 
 ---
 
