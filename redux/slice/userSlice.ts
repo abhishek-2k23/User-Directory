@@ -11,6 +11,7 @@ const initialState: userInitialState = {
   userDetailsScreenData: null,
   infiniteLoader: false,
   searchResult: null,
+  sortedResult : [],
 }
 const userSlice = createSlice({
   name: "users",
@@ -70,6 +71,16 @@ const userSlice = createSlice({
     clearSearchResult: (state) => {
       state.searchResult = []
     },
+
+     setSortedResults : (state, action: PayloadAction<string>) => {
+      state.sortedResult = state.usersShortInfo?.slice().sort((a, b) => { 
+        if (action.payload === "asc") {
+          return a.name.localeCompare(b.name) // Ascending order
+        }
+        return b.name.localeCompare(a.name) // Descending order
+      }) || []
+    },
+       
   },
 })
 
@@ -80,5 +91,7 @@ export const {
   setUserDetailsScreenData,
   setSearchResult,
   clearSearchResult,
+  setSortedResults,
+  setTheme
 } = userSlice.actions
 export default userSlice.reducer
