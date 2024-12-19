@@ -85,7 +85,7 @@
 
 ## 📲 APK Download
 
-An APK file is provided for easy installation on Android devices. Download the APK file [here](#) and install it on your device to experience the app firsthand.
+An APK file is provided for easy installation on Android devices. Download the APK file [here](https://github.com/abhishek-2k23/User-Directory/blob/main/builds/userdirectory.apk) and install it on your device to experience the app firsthand.
 
 ---
 
