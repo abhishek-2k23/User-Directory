@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, View, StyleSheet, useColorScheme } from 'react-native';
 import { Colors } from '@/constants/Colors';
-import { ThemedView } from '../ThemedView';
+import { ThemedView } from './ThemedView';
 
 const Loader = () => {
     const theme = useColorScheme() || "light";

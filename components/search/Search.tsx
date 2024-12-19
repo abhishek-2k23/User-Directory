@@ -14,7 +14,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import {
   setSearchScreen,
   setSearchText,
-} from "../../../redux/slice/searchSlice"
+} from "../../redux/slice/searchSlice"
 import { setSearchResult, setSortedResults } from "@/redux/slice/userSlice"
 
 const Search = () => {

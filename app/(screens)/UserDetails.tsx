@@ -7,7 +7,7 @@ import { Colors } from '@/constants/Colors';
 import { useLocalSearchParams } from 'expo-router';
 import { setUserDetailsScreenData } from '@/redux/slice/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '@/components/src/Loader';
+import Loader from '@/components/Loader';
 
 
 const UserDetails: React.FC = () => {

@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { FlatList, Pressable, StyleSheet, View } from "react-native"
 import { ThemedText } from "@/components/ThemedText"
-import UserComponent from "@/components/src/index/UserComponent"
+import UserComponent from "@/components/index/UserComponent"
 import { ThemedView } from "../ThemedView"
 import { useDispatch } from "react-redux"
 import { setSearchScreen } from "@/redux/slice/searchSlice"
 import { router } from "expo-router"
-import Loader from "./Loader"
+import Loader from "../Loader"
 import { clearSearchResult } from "@/redux/slice/userSlice"
 
 const SearchedUserDetails = ({
