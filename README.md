@@ -89,7 +89,7 @@ Install the app on your Android device and explore its features effortlessly.
 
 <a href="https://drive.google.com/file/d/1mxmJvKmqZfnOkkaODhnO7xJLZGeXhdJL/view?usp=drive_link" download>
   <img 
-    src="https://img.icons8.com/external-flat-juicy-fish/64/000000/external-download-web-interfaces-flat-flat-juicy-fish.png" 
+    src="./assets/images/download.png"
     alt="Download APK" 
     style="width: 80px; height: 80px; margin-top: 10px;"
   />
