@@ -83,9 +83,19 @@
 
 ---
 
-## 📲 APK Download
+## 📲 Download the APK  
 
-An APK file is provided for easy installation on Android devices. Download the APK file [here](https://github.com/abhishek-2k23/User-Directory/blob/main/builds/userdirectory.apk) and install it on your device to experience the app firsthand.
+Install the app on your Android device and explore its features effortlessly.  
+
+<a href="https://drive.google.com/file/d/1mxmJvKmqZfnOkkaODhnO7xJLZGeXhdJL/view?usp=drive_link" download>
+  <img 
+    src="https://img.icons8.com/external-flat-juicy-fish/64/000000/external-download-web-interfaces-flat-flat-juicy-fish.png" 
+    alt="Download APK" 
+    style="width: 80px; height: 80px; margin-top: 10px;"
+  />
+</a>
+
+**Click the icon above to download the APK file.**
 
 ---
 
