@@ -87,9 +87,10 @@
 
 Install the app on your Android device and explore its features effortlessly.  
 
-<a href="https://drive.google.com/uc?export=download&id=1mxmJvKmqZfnOkkaODhnO7xJLZGeXhdJL" download>
+<a href="https://drive.google.com/uc?export=download&id=1mxmJvKmqZfnOkkaODhnO7xJLZGeXhdJL
+" download>
   <img 
-    src="./assets/images/download.png"
+    src="./assets/images/folder.png"
     alt="Download APK" 
     style="width: 80px; height: 80px; margin-top: 10px;"
   />
